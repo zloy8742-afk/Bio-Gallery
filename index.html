@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./favicon.gif" type="image/x-icon">
+</head> 
+    
+    
+
+
+<body>
+
+    <div class="container">
+
+        <!-- PROFILE DATA (редагуй тут) -->
+        <div class="profile-card">
+            <img src="img/любомир в малиновому.png" class="avatar" alt="Avatar">
+            <h1>Любомир</h1>
+            <p class="bio">
+
+
+                Це моя фотогалерея.
+                Сучасний дизайн 2026 року.
+            </p>
+
+            <div class="buttons">
+                <a href="https://www.youtube.com" class="btn" download>YouTube</a>
+                <a href="https://instagram.com" target="_blank" class="btn">Instagram</a>
+                <a href="https://linkedin.com" target="_blank" class="btn">LinkedIn</a>
+            </div>
+        </div>
+
+        <!-- GALLERY -->
+        <div class="gallery">
+            <div class="gallery-item"><img src="img\оцелот черепаха і пес.jpg"></div>
+            <div class="gallery-item"><img src="img\любомир в окулярах .jpg"></div>
+            <div class="gallery-item"><img src="img\оцелот черепаха і особа .jpg"></div>
+            <div class="gallery-item"><img src="img\лось.jpg"></div>
+            <div class="gallery-item"><img src="img\любомир з щукою.png"></div>
+            <div class="gallery-item"><img src="img\оля фейс.jpg"></div>
+            <div class="gallery-item"><img src="img\ацелот черепаха.jpg"></div>
+            <div class="gallery-item"><img src="img\олекса мент..jpg"></div>
+            <div class="gallery-item"><img src="img\любомир в новому свитері.jpg"></div>
+            <div class="gallery-item"><img src="img\любомир в малиновому.png"></div>
+            <div class="gallery-item"><img src="img\любомир в галстуці.png"></div>
+            <div class="gallery-item"><img src="img\любомир з грибом.jpg"></div>
+            
+ <!--відео плеєр  -->
+           <div class="player-container">
+    <video id="mainVideo" controls>
+        <source src="video1.mp4" type="video/mp4">
+        <!-- <source src="video2.mp4" type="video/mp4"> -->
+        
+        Ваш браузер не підтримує HTML5 відео.
+    </video>
+    
+    <ul class="playlist" id="playlist">
+        <li data-src="video\Земля как пух без навоза.mp4" class="active">Відео 1</li>
+        <li data-src="video\baba_i_lav.mp4">Відео 2</li>
+        <li data-src="video\ редакторі Lunacy .mp4">Відео 3</li>
+        <li data-src="video\любомир і щука.mp4">Відео 4</li>
+        <li data-src="video\myv.mp4">Відео 4</li>
+    </ul>
+</div>
+
+<script>
+    const videoPlayer = document.getElementById('mainVideo');
+    const playlist = document.getElementById('playlist');
+
+    playlist.addEventListener('click', function(e) {
+        if (e.target.tagName === 'LI') {
+            // Перемикання активного класу
+            document.querySelector('.active').classList.remove('active');
+            e.target.classList.add('active');
+
+            // Зміна джерела відео
+            videoPlayer.src = e.target.getAttribute('data-src');
+            videoPlayer.play();
+        }
+    });
+</script>
+ <!-- відео плеєр  -->
+           <div class="gallery-item"><img src="img\юля мама любко.JPG"></div>
+           <div class="gallery-item"><img src="img\фонтан любко.JPG"></div> 
+            
+        </div>
+ 
+        
+        <footer>
+            © 2026 | Modern Bio Gallery
+            
+        </footer>
+
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <span class="close" id="close">&times;</span>
+        <img src="" id="lightbox-img">
+    </div>
+
+    <script>
+        // Lightbox Script
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close');
+
+        galleryItems.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                lightboxImg.src = img.src;
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                lightbox.classList.remove('active');
+            }
+        });
+    </script>
+<!-- плеєр код -->
+    
+
+<!-- плеєр код -->
+</body>
+
+</html>
+
+   <!-- Що можна змінити:
+
+Фото аватара → src="..."
+
+Ім’я → <h1>
+
+Текст → <p class="bio">
+
+CV файл → href="cv.pdf"
+
+Соцмережі → посилання в кнопках
+
+Фото галереї → змінити URL з picsum.photos на свої -->
