@@ -68,6 +68,7 @@
                     <li data-src="video\любомир і щука.mp4">Відео 3</li>
                     <li data-src="video\myv.mp4">Відео 4</li>
                     <li data-src="video\video любко хокей.mp4">Відео 5</li>
+                    <li data-src="video\бандера.mp4">Відео 6</li>
 
                 </ul>
             </div>
@@ -90,9 +91,76 @@
             </script>
             <!-- відео плеєр  -->
             <div class="gallery-item"><img src="img\юля мама любко.JPG"></div>
+            <div class="gallery-item"><img src="img\юля.JPG"></div>
+            <div class="gallery-item"><img src="img\фонтан любомир.jpg"></div>
+            <div class="gallery-item"><img src="img\любомир юля.jpg"></div>
+            <div class="gallery-item"><img src="img\любомир.jpg"></div>
+            <div class="gallery-item"><img src="img\загальна.jpg"></div>
             <div class="gallery-item"><img src="img\фонтан любко.JPG"></div>
 
         </div>
+<!-- коментарі код -->
+
+<div id="comment-system" style="max-width: 600px; margin: 20px auto; font-family: sans-serif;">
+    <h3>Коментарі</h3>
+
+    <div style="margin-bottom: 20px;">
+        <input type="text" id="comment-name" placeholder="Ваше ім'я"
+            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+        <textarea id="comment-text" placeholder="Напишіть коментар..."
+            style="width: 100%; padding: 8px; height: 80px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
+        <button onclick="addComment()"
+            style="margin-top: 10px; padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">Відправити</button>
+    </div>
+
+    <div id="comments-list">
+    </div>
+</div>
+
+<script>
+    // Функція для завантаження коментарів
+    function loadComments() {
+        const commentsList = document.getElementById('comments-list');
+        const comments = JSON.parse(localStorage.getItem('my_site_comments')) || [];
+
+        commentsList.innerHTML = '';
+        comments.forEach(c => {
+            const div = document.createElement('div');
+            div.style.borderBottom = "1px solid #eee";
+            div.style.padding = "10px 0";
+            div.innerHTML = `<strong>${c.name}</strong> <small style="color: gray;">${c.date}</small><p style="margin: 5px 0;">${c.text}</p>`;
+            commentsList.appendChild(div);
+        });
+    }
+
+    // Функція для додавання коментаря
+    function addComment() {
+        const nameInput = document.getElementById('comment-name');
+        const textInput = document.getElementById('comment-text');
+
+        if (nameInput.value.trim() === '' || textInput.value.trim() === '') {
+            alert("Будь ласка, заповніть всі поля!");
+            return;
+        }
+
+        const comments = JSON.parse(localStorage.getItem('my_site_comments')) || [];
+        const newComment = {
+            name: nameInput.value,
+            text: textInput.value,
+            date: new Date().toLocaleString()
+        };
+
+        comments.push(newComment);
+        localStorage.setItem('my_site_comments', JSON.stringify(comments));
+
+        nameInput.value = '';
+        textInput.value = '';
+        loadComments();
+    }
+
+    // Завантажуємо при старті
+    loadComments();
+</script>
 
 
         <footer>
